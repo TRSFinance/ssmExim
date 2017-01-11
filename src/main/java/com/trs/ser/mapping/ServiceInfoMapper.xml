@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.trs.ser.dao.ServiceInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.trs.ser.model.ServiceInfo" >
+    <id column="yr" property="yr" jdbcType="INTEGER" />
+    <id column="reporter_code" property="reporterCode" jdbcType="VARCHAR" />
+    <id column="partner_code" property="partnerCode" jdbcType="VARCHAR" />
+    <id column="trade_flow_code" property="tradeFlowCode" jdbcType="CHAR" />
+    <id column="service_code" property="serviceCode" jdbcType="VARCHAR" />
+    <result column="classification" property="classification" jdbcType="VARCHAR" />
+    <result column="reporter" property="reporter" jdbcType="VARCHAR" />
+    <result column="partner" property="partner" jdbcType="VARCHAR" />
+    <result column="aggregate_level" property="aggregateLevel" jdbcType="CHAR" />
+    <result column="is_leaf_code" property="isLeafCode" jdbcType="CHAR" />
+    <result column="trade_value" property="tradeValue" jdbcType="BIGINT" />
+    <result column="crtime" property="crtime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    yr, reporter_code, partner_code, trade_flow_code, service_code, classification, reporter, 
+    partner, aggregate_level, is_leaf_code, trade_value, crtime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.trs.ser.model.ServiceInfoKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from service_info
+    where yr = #{yr,jdbcType=INTEGER}
+      and reporter_code = #{reporterCode,jdbcType=VARCHAR}
+      and partner_code = #{partnerCode,jdbcType=VARCHAR}
+      and trade_flow_code = #{tradeFlowCode,jdbcType=CHAR}
+      and service_code = #{serviceCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.trs.ser.model.ServiceInfoKey" >
+    delete from service_info
+    where yr = #{yr,jdbcType=INTEGER}
+      and reporter_code = #{reporterCode,jdbcType=VARCHAR}
+      and partner_code = #{partnerCode,jdbcType=VARCHAR}
+      and trade_flow_code = #{tradeFlowCode,jdbcType=CHAR}
+      and service_code = #{serviceCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.trs.ser.model.ServiceInfo" >
+    insert into service_info (yr, reporter_code, partner_code, 
+      trade_flow_code, service_code, classification, 
+      reporter, partner, aggregate_level, 
+      is_leaf_code, trade_value, crtime, 
+      updatetime)
+    values (#{yr,jdbcType=INTEGER}, #{reporterCode,jdbcType=VARCHAR}, #{partnerCode,jdbcType=VARCHAR}, 
+      #{tradeFlowCode,jdbcType=CHAR}, #{serviceCode,jdbcType=VARCHAR}, #{classification,jdbcType=VARCHAR}, 
+      #{reporter,jdbcType=VARCHAR}, #{partner,jdbcType=VARCHAR}, #{aggregateLevel,jdbcType=CHAR}, 
+      #{isLeafCode,jdbcType=CHAR}, #{tradeValue,jdbcType=BIGINT}, #{crtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.trs.ser.model.ServiceInfo" >
+    insert into service_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="yr != null" >
+        yr,
+      </if>
+      <if test="reporterCode != null" >
+        reporter_code,
+      </if>
+      <if test="partnerCode != null" >
+        partner_code,
+      </if>
+      <if test="tradeFlowCode != null" >
+        trade_flow_code,
+      </if>
+      <if test="serviceCode != null" >
+        service_code,
+      </if>
+      <if test="classification != null" >
+        classification,
+      </if>
+      <if test="reporter != null" >
+        reporter,
+      </if>
+      <if test="partner != null" >
+        partner,
+      </if>
+      <if test="aggregateLevel != null" >
+        aggregate_level,
+      </if>
+      <if test="isLeafCode != null" >
+        is_leaf_code,
+      </if>
+      <if test="tradeValue != null" >
+        trade_value,
+      </if>
+      <if test="crtime != null" >
+        crtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="yr != null" >
+        #{yr,jdbcType=INTEGER},
+      </if>
+      <if test="reporterCode != null" >
+        #{reporterCode,jdbcType=VARCHAR},
+      </if>
+      <if test="partnerCode != null" >
+        #{partnerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeFlowCode != null" >
+        #{tradeFlowCode,jdbcType=CHAR},
+      </if>
+      <if test="serviceCode != null" >
+        #{serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="classification != null" >
+        #{classification,jdbcType=VARCHAR},
+      </if>
+      <if test="reporter != null" >
+        #{reporter,jdbcType=VARCHAR},
+      </if>
+      <if test="partner != null" >
+        #{partner,jdbcType=VARCHAR},
+      </if>
+      <if test="aggregateLevel != null" >
+        #{aggregateLevel,jdbcType=CHAR},
+      </if>
+      <if test="isLeafCode != null" >
+        #{isLeafCode,jdbcType=CHAR},
+      </if>
+      <if test="tradeValue != null" >
+        #{tradeValue,jdbcType=BIGINT},
+      </if>
+      <if test="crtime != null" >
+        #{crtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.trs.ser.model.ServiceInfo" >
+    update service_info
+    <set >
+      <if test="classification != null" >
+        classification = #{classification,jdbcType=VARCHAR},
+      </if>
+      <if test="reporter != null" >
+        reporter = #{reporter,jdbcType=VARCHAR},
+      </if>
+      <if test="partner != null" >
+        partner = #{partner,jdbcType=VARCHAR},
+      </if>
+      <if test="aggregateLevel != null" >
+        aggregate_level = #{aggregateLevel,jdbcType=CHAR},
+      </if>
+      <if test="isLeafCode != null" >
+        is_leaf_code = #{isLeafCode,jdbcType=CHAR},
+      </if>
+      <if test="tradeValue != null" >
+        trade_value = #{tradeValue,jdbcType=BIGINT},
+      </if>
+      <if test="crtime != null" >
+        crtime = #{crtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where yr = #{yr,jdbcType=INTEGER}
+      and reporter_code = #{reporterCode,jdbcType=VARCHAR}
+      and partner_code = #{partnerCode,jdbcType=VARCHAR}
+      and trade_flow_code = #{tradeFlowCode,jdbcType=CHAR}
+      and service_code = #{serviceCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.trs.ser.model.ServiceInfo" >
+    update service_info
+    set classification = #{classification,jdbcType=VARCHAR},
+      reporter = #{reporter,jdbcType=VARCHAR},
+      partner = #{partner,jdbcType=VARCHAR},
+      aggregate_level = #{aggregateLevel,jdbcType=CHAR},
+      is_leaf_code = #{isLeafCode,jdbcType=CHAR},
+      trade_value = #{tradeValue,jdbcType=BIGINT},
+      crtime = #{crtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where yr = #{yr,jdbcType=INTEGER}
+      and reporter_code = #{reporterCode,jdbcType=VARCHAR}
+      and partner_code = #{partnerCode,jdbcType=VARCHAR}
+      and trade_flow_code = #{tradeFlowCode,jdbcType=CHAR}
+      and service_code = #{serviceCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

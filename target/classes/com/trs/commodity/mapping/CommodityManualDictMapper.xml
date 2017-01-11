@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.trs.commodity.dao.CommodityManualDictMapper" >
+  <resultMap id="BaseResultMap" type="com.trs.commodity.model.CommodityManualDict" >
+    <id column="com_manual_code" property="comManualCode" jdbcType="VARCHAR" />
+    <result column="com_manual_name" property="comManualName" jdbcType="VARCHAR" />
+    <result column="com_code_list" property="comCodeList" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    com_manual_code, com_manual_name, com_code_list
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from commodity_manual_dict
+    where com_manual_code = #{comManualCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from commodity_manual_dict
+    where com_manual_code = #{comManualCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.trs.commodity.model.CommodityManualDict" >
+    insert into commodity_manual_dict (com_manual_code, com_manual_name, com_code_list
+      )
+    values (#{comManualCode,jdbcType=VARCHAR}, #{comManualName,jdbcType=VARCHAR}, #{comCodeList,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.trs.commodity.model.CommodityManualDict" >
+    insert into commodity_manual_dict
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="comManualCode != null" >
+        com_manual_code,
+      </if>
+      <if test="comManualName != null" >
+        com_manual_name,
+      </if>
+      <if test="comCodeList != null" >
+        com_code_list,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="comManualCode != null" >
+        #{comManualCode,jdbcType=VARCHAR},
+      </if>
+      <if test="comManualName != null" >
+        #{comManualName,jdbcType=VARCHAR},
+      </if>
+      <if test="comCodeList != null" >
+        #{comCodeList,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.trs.commodity.model.CommodityManualDict" >
+    update commodity_manual_dict
+    <set >
+      <if test="comManualName != null" >
+        com_manual_name = #{comManualName,jdbcType=VARCHAR},
+      </if>
+      <if test="comCodeList != null" >
+        com_code_list = #{comCodeList,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where com_manual_code = #{comManualCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.trs.commodity.model.CommodityManualDict" >
+    update commodity_manual_dict
+    set com_manual_name = #{comManualName,jdbcType=VARCHAR},
+      com_code_list = #{comCodeList,jdbcType=VARCHAR}
+    where com_manual_code = #{comManualCode,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="findAll" resultMap="BaseResultMap" >
+    select *     	
+    from commodity_manual_dict
+  </select>
+  
+  
+  
+  
+  
+  
+  
+</mapper>

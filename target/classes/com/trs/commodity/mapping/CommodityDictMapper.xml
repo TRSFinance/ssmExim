@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.trs.commodity.dao.CommodityDictMapper" >
+  <resultMap id="BaseResultMap" type="com.trs.commodity.model.CommodityDict" >
+    <id column="commodity_code" property="commodityCode" jdbcType="VARCHAR" />
+    <result column="commodity_name" property="commodityName" jdbcType="VARCHAR" />
+    <result column="commodity_chn_name" property="commodityChnName" jdbcType="VARCHAR" />
+    <result column="commodity_parent_code" property="commodityParentCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    commodity_code, commodity_name, commodity_chn_name, commodity_parent_code
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.trs.commodity.model.CommodityDict" >
+    select 
+    <include refid="Base_Column_List" />
+    from commodity_dict
+    where commodity_code = #{commodityCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from commodity_dict
+    where commodity_code = #{commodityCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.trs.commodity.model.CommodityDict" >
+    insert into commodity_dict (commodity_code, commodity_name, commodity_chn_name, 
+      commodity_parent_code)
+    values (#{commodityCode,jdbcType=VARCHAR}, #{commodityName,jdbcType=VARCHAR}, #{commodityChnName,jdbcType=VARCHAR}, 
+      #{commodityParentCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.trs.commodity.model.CommodityDict" >
+    insert into commodity_dict
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="commodityCode != null" >
+        commodity_code,
+      </if>
+      <if test="commodityName != null" >
+        commodity_name,
+      </if>
+      <if test="commodityChnName != null" >
+        commodity_chn_name,
+      </if>
+      <if test="commodityParentCode != null" >
+        commodity_parent_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="commodityCode != null" >
+        #{commodityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityName != null" >
+        #{commodityName,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityChnName != null" >
+        #{commodityChnName,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityParentCode != null" >
+        #{commodityParentCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.trs.commodity.model.CommodityDict" >
+    update commodity_dict
+    <set >
+      <if test="commodityName != null" >
+        commodity_name = #{commodityName,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityChnName != null" >
+        commodity_chn_name = #{commodityChnName,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityParentCode != null" >
+        commodity_parent_code = #{commodityParentCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where commodity_code = #{commodityCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.trs.commodity.model.CommodityDict" >
+    update commodity_dict
+    set commodity_name = #{commodityName,jdbcType=VARCHAR},
+      commodity_chn_name = #{commodityChnName,jdbcType=VARCHAR},
+      commodity_parent_code = #{commodityParentCode,jdbcType=VARCHAR}
+    where commodity_code = #{commodityCode,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <select id="findChildren" resultMap="BaseResultMap" parameterType="com.trs.commodity.model.CommodityDict" >
+    select 
+    <include refid="Base_Column_List" />
+    from commodity_dict
+    where commodity_parent_code = #{commodityParentCode,jdbcType=VARCHAR}
+  </select>
+  
+  
+  
+  
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.trs.ser.dao.ServiceDictMapper" >
+  <resultMap id="BaseResultMap" type="com.trs.ser.model.ServiceDict" >
+    <id column="ser_code" property="serCode" jdbcType="VARCHAR" />
+    <result column="ser_name" property="serName" jdbcType="VARCHAR" />
+    <result column="ser_chn_name" property="serChnName" jdbcType="VARCHAR" />
+    <result column="ser_parent_code" property="serParentCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ser_code, ser_name, ser_chn_name, ser_parent_code
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from service_dict
+    where ser_code = #{serCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from service_dict
+    where ser_code = #{serCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.trs.ser.model.ServiceDict" >
+    insert into service_dict (ser_code, ser_name, ser_chn_name, 
+      ser_parent_code)
+    values (#{serCode,jdbcType=VARCHAR}, #{serName,jdbcType=VARCHAR}, #{serChnName,jdbcType=VARCHAR}, 
+      #{serParentCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.trs.ser.model.ServiceDict" >
+    insert into service_dict
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serCode != null" >
+        ser_code,
+      </if>
+      <if test="serName != null" >
+        ser_name,
+      </if>
+      <if test="serChnName != null" >
+        ser_chn_name,
+      </if>
+      <if test="serParentCode != null" >
+        ser_parent_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serCode != null" >
+        #{serCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serName != null" >
+        #{serName,jdbcType=VARCHAR},
+      </if>
+      <if test="serChnName != null" >
+        #{serChnName,jdbcType=VARCHAR},
+      </if>
+      <if test="serParentCode != null" >
+        #{serParentCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.trs.ser.model.ServiceDict" >
+    update service_dict
+    <set >
+      <if test="serName != null" >
+        ser_name = #{serName,jdbcType=VARCHAR},
+      </if>
+      <if test="serChnName != null" >
+        ser_chn_name = #{serChnName,jdbcType=VARCHAR},
+      </if>
+      <if test="serParentCode != null" >
+        ser_parent_code = #{serParentCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ser_code = #{serCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.trs.ser.model.ServiceDict" >
+    update service_dict
+    set ser_name = #{serName,jdbcType=VARCHAR},
+      ser_chn_name = #{serChnName,jdbcType=VARCHAR},
+      ser_parent_code = #{serParentCode,jdbcType=VARCHAR}
+    where ser_code = #{serCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

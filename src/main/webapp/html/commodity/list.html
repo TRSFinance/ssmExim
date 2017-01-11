@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+
+	<head>
+	  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+	    <title>商品列表页</title>  
+	    <base href="/ssmExim/" />
+		<!-- The styles -->
+		<link href="style/css/ztree/zTreeStyle.css" >
+		<!-- The fav icon -->
+		<link rel="shortcut icon" href="img/favicon1.ico">
+		<!-- The js -->
+		<script src="style/js/jquery-1.11.3.min.js"></script>		
+		<script src="style/js/ztree/jquery.ztree.core.min.js"></script>
+		<script type="text/javascript">
+		var setting = {	};
+
+		var zNodes =[
+			{ name:"中国", open:true,
+				children: [
+					{ name:"江西",
+						children: [
+							{ name:"赣州"},
+							{ name:"南昌"}
+						]},
+					{ name:"福建",
+						children: [
+							{ name:"福州"},
+							{ name:"厦门"},
+						]},
+					{ name:"香港", isParent:true}
+				]},
+			{ name:"美国",
+				children: [
+					{ name:"纽约", open:true,
+						children: [
+							{ name:"纽约1"},
+							{ name:"纽约2"}
+						]},
+					{ name:"华盛顿",
+						children: [
+							{ name:"华盛顿1"},
+							{ name:"华盛顿2"},
+							{ name:"叶子节点223"},
+							{ name:"叶子节点224"}
+						]},
+					{ name:"夏威夷",
+						children: [
+							{ name:"夏威夷1"},
+							{ name:"夏威夷2"}
+						]}
+				]}
+
+		];
+
+		$(document).ready(function(){
+			$.fn.zTree.init($("#tree"), setting, zNodes);
+		});
+	</script>
+	</head>
+
+	<body>
+	
+		<div class="col-md-3"  >
+			<ul id="tree" class="ztree" style="margin-top: 30px;width:220px;max-height:550px;overflow-y:auto; overflow-x: auto;"></ul>
+		</div>
+
+								
+
+	</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>  
+  <head> 
+  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+    <title>自定义分类商品列表页</title>  
+    <base href="/ssmExim/" />
+  </head>  
+   <script src="style/js/jquery-1.11.3.min.js"></script> 
+  <script type="text/javascript">
+	
+  <!-- 设置页面时访问的方法 -->
+  	$(document).ready(function(){
+  		getlist();
+  		
+  	});
+  
+  	function getlist(){
+  		
+  		 $.ajax({
+ 			url:"commManual/test?random="+Math.random(),
+ 			type:"POST",
+ 			cache:false,
+ 			dataType:"json",
+ 			data:{},
+ 			success:function(data){
+				var htmlchildren="";
+				$.each(data,function(i,item){
+					
+					htmlchildren +=	"<tr><td>"+(i+1)+"</td>"+
+						"<td>"+item.comManualCode+"</td>"+
+						"<td>"+item.comManualName+"</td>";
+					if(typeof(item.comCodeList)!='undefined'){						
+						htmlchildren +="<td>"+item.comCodeList+"</td></tr>"						
+					}else{
+						htmlchildren +="<td></td></tr>"							
+					}
+				}); 
+  				$("#commManual").html(htmlchildren);
+ 			},
+ 			error:function(){
+ 				alert("居然出错了。。。");
+ 			}
+ 		});
+  		
+  		
+  	}
+  	
+  </script>
+    
+  <body>  
+
+  <table border="1" bordercolor="#a0c6e5" style="border-collapse:collapse">
+  	<!-- 表头信息开始 -->
+  	<thead>
+  		<tr>
+			<td>序号</td>
+			<td>商品编码</td>
+			<td width="40%">商品名称</td>
+			<td>商品编码集合</td>					
+		</tr>
+	</thead>  
+	<!-- 表头信息结束 -->
+	<!-- 通过js来循环数据 -->
+	<tbody id="commManual">
+
+	</tbody>	
+	</table>
+  </body>  
+</html>  
