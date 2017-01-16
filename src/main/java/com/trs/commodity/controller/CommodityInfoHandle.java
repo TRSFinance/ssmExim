@@ -34,7 +34,7 @@ public class CommodityInfoHandle {
 	private HandleIndexLogsService handleIndexService;
 		
 	@Autowired
-	BasicDataSource dataSource;
+	BasicDataSource dataSource; 
 		
 	/**
 	 * 处理报告国和对象国中文名称字段
