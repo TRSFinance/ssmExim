@@ -17,7 +17,7 @@ import com.trs.commodity.service.CommodityInfoService;
 import com.trs.commodity.service.CountryDictService;
 import com.trs.commodity.service.HandleIndexLogsService;
 
-public class CommodityInfoHandle {
+public class CommodityInfoHandle { 
 
 	private Logger log = Logger.getLogger(CommodityInfoHandle.class);
 	
@@ -35,8 +35,7 @@ public class CommodityInfoHandle {
 		
 	@Autowired
 	BasicDataSource dataSource;
-	
-	
+		
 	/**
 	 * 处理报告国和对象国中文名称字段
 	 */
