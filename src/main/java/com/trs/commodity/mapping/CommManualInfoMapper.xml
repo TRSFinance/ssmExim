@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.trs.commodity.dao.CommManualInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.trs.commodity.model.CommManualInfo" >
+    <id column="yr" property="yr" jdbcType="INTEGER" />
+    <id column="reporter_code" property="reporterCode" jdbcType="VARCHAR" />
+    <id column="partner_code" property="partnerCode" jdbcType="VARCHAR" />
+    <id column="trade_flow_code" property="tradeFlowCode" jdbcType="CHAR" />
+    <id column="commodity_code" property="commodityCode" jdbcType="VARCHAR" />
+    <result column="classification" property="classification" jdbcType="VARCHAR" />
+    <result column="reporter" property="reporter" jdbcType="VARCHAR" />
+    <result column="partner" property="partner" jdbcType="VARCHAR" />
+    <result column="trade_value" property="tradeValue" jdbcType="BIGINT" />
+    <result column="netweight" property="netweight" jdbcType="BIGINT" />
+    <result column="qtyunitcode" property="qtyunitcode" jdbcType="CHAR" />
+    <result column="altqtyunit" property="altqtyunit" jdbcType="BIGINT" />
+    <result column="changed_since_lastyear" property="changedSinceLastyear" jdbcType="BIGINT" />
+    <result column="rate_since_lastyear" property="rateSinceLastyear" jdbcType="DOUBLE" />
+    <result column="reporter_trade_rate" property="reporterTradeRate" jdbcType="DOUBLE" />
+    <result column="partner_trade_rate" property="partnerTradeRate" jdbcType="DOUBLE" />
+    <result column="reporter_rate_order" property="reporterRateOrder" jdbcType="INTEGER" />
+    <result column="partner_rate_order" property="partnerRateOrder" jdbcType="INTEGER" />
+    <result column="reporter_rate_changed" property="reporterRateChanged" jdbcType="DOUBLE" />
+    <result column="partner_rate_changed" property="partnerRateChanged" jdbcType="DOUBLE" />
+    <result column="crtime" property="crtime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="union_key" property="unionKey" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    yr, reporter_code, partner_code, trade_flow_code, commodity_code, classification, 
+    reporter, partner, trade_value, netweight, qtyunitcode, altqtyunit, changed_since_lastyear, 
+    rate_since_lastyear, reporter_trade_rate, partner_trade_rate, reporter_rate_order, 
+    partner_rate_order, reporter_rate_changed, partner_rate_changed, crtime, updatetime, 
+    union_key
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.trs.commodity.model.CommManualInfoKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from commodity_manual_info
+    where yr = #{yr,jdbcType=INTEGER}
+      and reporter_code = #{reporterCode,jdbcType=VARCHAR}
+      and partner_code = #{partnerCode,jdbcType=VARCHAR}
+      and trade_flow_code = #{tradeFlowCode,jdbcType=CHAR}
+      and commodity_code = #{commodityCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.trs.commodity.model.CommManualInfoKey" >
+    delete from commodity_manual_info
+    where yr = #{yr,jdbcType=INTEGER}
+      and reporter_code = #{reporterCode,jdbcType=VARCHAR}
+      and partner_code = #{partnerCode,jdbcType=VARCHAR}
+      and trade_flow_code = #{tradeFlowCode,jdbcType=CHAR}
+      and commodity_code = #{commodityCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.trs.commodity.model.CommManualInfo" >
+    insert into commodity_manual_info (yr, reporter_code, partner_code, 
+      trade_flow_code, commodity_code, classification, 
+      reporter, partner, trade_value, 
+      netweight, qtyunitcode, altqtyunit, 
+      changed_since_lastyear, rate_since_lastyear, 
+      reporter_trade_rate, partner_trade_rate, reporter_rate_order, 
+      partner_rate_order, reporter_rate_changed, partner_rate_changed, 
+      crtime, updatetime, union_key
+      )
+    values (#{yr,jdbcType=INTEGER}, #{reporterCode,jdbcType=VARCHAR}, #{partnerCode,jdbcType=VARCHAR}, 
+      #{tradeFlowCode,jdbcType=CHAR}, #{commodityCode,jdbcType=VARCHAR}, #{classification,jdbcType=VARCHAR}, 
+      #{reporter,jdbcType=VARCHAR}, #{partner,jdbcType=VARCHAR}, #{tradeValue,jdbcType=BIGINT}, 
+      #{netweight,jdbcType=BIGINT}, #{qtyunitcode,jdbcType=CHAR}, #{altqtyunit,jdbcType=BIGINT}, 
+      #{changedSinceLastyear,jdbcType=BIGINT}, #{rateSinceLastyear,jdbcType=DOUBLE}, 
+      #{reporterTradeRate,jdbcType=DOUBLE}, #{partnerTradeRate,jdbcType=DOUBLE}, #{reporterRateOrder,jdbcType=INTEGER}, 
+      #{partnerRateOrder,jdbcType=INTEGER}, #{reporterRateChanged,jdbcType=DOUBLE}, #{partnerRateChanged,jdbcType=DOUBLE}, 
+      #{crtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{unionKey,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.trs.commodity.model.CommManualInfo" >
+    insert into commodity_manual_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="yr != null" >
+        yr,
+      </if>
+      <if test="reporterCode != null" >
+        reporter_code,
+      </if>
+      <if test="partnerCode != null" >
+        partner_code,
+      </if>
+      <if test="tradeFlowCode != null" >
+        trade_flow_code,
+      </if>
+      <if test="commodityCode != null" >
+        commodity_code,
+      </if>
+      <if test="classification != null" >
+        classification,
+      </if>
+      <if test="reporter != null" >
+        reporter,
+      </if>
+      <if test="partner != null" >
+        partner,
+      </if>
+      <if test="tradeValue != null" >
+        trade_value,
+      </if>
+      <if test="netweight != null" >
+        netweight,
+      </if>
+      <if test="qtyunitcode != null" >
+        qtyunitcode,
+      </if>
+      <if test="altqtyunit != null" >
+        altqtyunit,
+      </if>
+      <if test="changedSinceLastyear != null" >
+        changed_since_lastyear,
+      </if>
+      <if test="rateSinceLastyear != null" >
+        rate_since_lastyear,
+      </if>
+      <if test="reporterTradeRate != null" >
+        reporter_trade_rate,
+      </if>
+      <if test="partnerTradeRate != null" >
+        partner_trade_rate,
+      </if>
+      <if test="reporterRateOrder != null" >
+        reporter_rate_order,
+      </if>
+      <if test="partnerRateOrder != null" >
+        partner_rate_order,
+      </if>
+      <if test="reporterRateChanged != null" >
+        reporter_rate_changed,
+      </if>
+      <if test="partnerRateChanged != null" >
+        partner_rate_changed,
+      </if>
+      <if test="crtime != null" >
+        crtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+      <if test="unionKey != null" >
+        union_key,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="yr != null" >
+        #{yr,jdbcType=INTEGER},
+      </if>
+      <if test="reporterCode != null" >
+        #{reporterCode,jdbcType=VARCHAR},
+      </if>
+      <if test="partnerCode != null" >
+        #{partnerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeFlowCode != null" >
+        #{tradeFlowCode,jdbcType=CHAR},
+      </if>
+      <if test="commodityCode != null" >
+        #{commodityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="classification != null" >
+        #{classification,jdbcType=VARCHAR},
+      </if>
+      <if test="reporter != null" >
+        #{reporter,jdbcType=VARCHAR},
+      </if>
+      <if test="partner != null" >
+        #{partner,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeValue != null" >
+        #{tradeValue,jdbcType=BIGINT},
+      </if>
+      <if test="netweight != null" >
+        #{netweight,jdbcType=BIGINT},
+      </if>
+      <if test="qtyunitcode != null" >
+        #{qtyunitcode,jdbcType=CHAR},
+      </if>
+      <if test="altqtyunit != null" >
+        #{altqtyunit,jdbcType=BIGINT},
+      </if>
+      <if test="changedSinceLastyear != null" >
+        #{changedSinceLastyear,jdbcType=BIGINT},
+      </if>
+      <if test="rateSinceLastyear != null" >
+        #{rateSinceLastyear,jdbcType=DOUBLE},
+      </if>
+      <if test="reporterTradeRate != null" >
+        #{reporterTradeRate,jdbcType=DOUBLE},
+      </if>
+      <if test="partnerTradeRate != null" >
+        #{partnerTradeRate,jdbcType=DOUBLE},
+      </if>
+      <if test="reporterRateOrder != null" >
+        #{reporterRateOrder,jdbcType=INTEGER},
+      </if>
+      <if test="partnerRateOrder != null" >
+        #{partnerRateOrder,jdbcType=INTEGER},
+      </if>
+      <if test="reporterRateChanged != null" >
+        #{reporterRateChanged,jdbcType=DOUBLE},
+      </if>
+      <if test="partnerRateChanged != null" >
+        #{partnerRateChanged,jdbcType=DOUBLE},
+      </if>
+      <if test="crtime != null" >
+        #{crtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unionKey != null" >
+        #{unionKey,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.trs.commodity.model.CommManualInfo" >
+    update commodity_manual_info
+    <set >
+      <if test="classification != null" >
+        classification = #{classification,jdbcType=VARCHAR},
+      </if>
+      <if test="reporter != null" >
+        reporter = #{reporter,jdbcType=VARCHAR},
+      </if>
+      <if test="partner != null" >
+        partner = #{partner,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeValue != null" >
+        trade_value = #{tradeValue,jdbcType=BIGINT},
+      </if>
+      <if test="netweight != null" >
+        netweight = #{netweight,jdbcType=BIGINT},
+      </if>
+      <if test="qtyunitcode != null" >
+        qtyunitcode = #{qtyunitcode,jdbcType=CHAR},
+      </if>
+      <if test="altqtyunit != null" >
+        altqtyunit = #{altqtyunit,jdbcType=BIGINT},
+      </if>
+      <if test="changedSinceLastyear != null" >
+        changed_since_lastyear = #{changedSinceLastyear,jdbcType=BIGINT},
+      </if>
+      <if test="rateSinceLastyear != null" >
+        rate_since_lastyear = #{rateSinceLastyear,jdbcType=DOUBLE},
+      </if>
+      <if test="reporterTradeRate != null" >
+        reporter_trade_rate = #{reporterTradeRate,jdbcType=DOUBLE},
+      </if>
+      <if test="partnerTradeRate != null" >
+        partner_trade_rate = #{partnerTradeRate,jdbcType=DOUBLE},
+      </if>
+      <if test="reporterRateOrder != null" >
+        reporter_rate_order = #{reporterRateOrder,jdbcType=INTEGER},
+      </if>
+      <if test="partnerRateOrder != null" >
+        partner_rate_order = #{partnerRateOrder,jdbcType=INTEGER},
+      </if>
+      <if test="reporterRateChanged != null" >
+        reporter_rate_changed = #{reporterRateChanged,jdbcType=DOUBLE},
+      </if>
+      <if test="partnerRateChanged != null" >
+        partner_rate_changed = #{partnerRateChanged,jdbcType=DOUBLE},
+      </if>
+      <if test="crtime != null" >
+        crtime = #{crtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unionKey != null" >
+        union_key = #{unionKey,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where yr = #{yr,jdbcType=INTEGER}
+      and reporter_code = #{reporterCode,jdbcType=VARCHAR}
+      and partner_code = #{partnerCode,jdbcType=VARCHAR}
+      and trade_flow_code = #{tradeFlowCode,jdbcType=CHAR}
+      and commodity_code = #{commodityCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.trs.commodity.model.CommManualInfo" >
+    update commodity_manual_info
+    set classification = #{classification,jdbcType=VARCHAR},
+      reporter = #{reporter,jdbcType=VARCHAR},
+      partner = #{partner,jdbcType=VARCHAR},
+      trade_value = #{tradeValue,jdbcType=BIGINT},
+      netweight = #{netweight,jdbcType=BIGINT},
+      qtyunitcode = #{qtyunitcode,jdbcType=CHAR},
+      altqtyunit = #{altqtyunit,jdbcType=BIGINT},
+      changed_since_lastyear = #{changedSinceLastyear,jdbcType=BIGINT},
+      rate_since_lastyear = #{rateSinceLastyear,jdbcType=DOUBLE},
+      reporter_trade_rate = #{reporterTradeRate,jdbcType=DOUBLE},
+      partner_trade_rate = #{partnerTradeRate,jdbcType=DOUBLE},
+      reporter_rate_order = #{reporterRateOrder,jdbcType=INTEGER},
+      partner_rate_order = #{partnerRateOrder,jdbcType=INTEGER},
+      reporter_rate_changed = #{reporterRateChanged,jdbcType=DOUBLE},
+      partner_rate_changed = #{partnerRateChanged,jdbcType=DOUBLE},
+      crtime = #{crtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      union_key = #{unionKey,jdbcType=VARCHAR}
+    where yr = #{yr,jdbcType=INTEGER}
+      and reporter_code = #{reporterCode,jdbcType=VARCHAR}
+      and partner_code = #{partnerCode,jdbcType=VARCHAR}
+      and trade_flow_code = #{tradeFlowCode,jdbcType=CHAR}
+      and commodity_code = #{commodityCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

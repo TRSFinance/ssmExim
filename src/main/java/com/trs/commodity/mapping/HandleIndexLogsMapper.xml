@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.trs.commodity.dao.HandleIndexLogsMapper" >
+  <resultMap id="BaseResultMap" type="com.trs.commodity.model.HandleIndexLogs" >
+    <id column="handle_id" property="handleId" jdbcType="INTEGER" />
+    <result column="yr_index" property="yrIndex" jdbcType="INTEGER" />
+    <result column="rt_index" property="rtIndex" jdbcType="INTEGER" />
+    <result column="pt_index" property="ptIndex" jdbcType="INTEGER" />
+    <result column="comm_index" property="commIndex" jdbcType="INTEGER" />
+    <result column="folw_index" property="folwIndex" jdbcType="INTEGER" />
+    <result column="ps" property="ps" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    handle_id, yr_index, rt_index, pt_index, comm_index, folw_index, ps
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from handle_index_logs
+    where handle_id = #{handleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from handle_index_logs
+    where handle_id = #{handleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.trs.commodity.model.HandleIndexLogs" >
+    insert into handle_index_logs (handle_id, yr_index, rt_index, 
+      pt_index, comm_index, folw_index, 
+      ps)
+    values (#{handleId,jdbcType=INTEGER}, #{yrIndex,jdbcType=INTEGER}, #{rtIndex,jdbcType=INTEGER}, 
+      #{ptIndex,jdbcType=INTEGER}, #{commIndex,jdbcType=INTEGER}, #{folwIndex,jdbcType=INTEGER}, 
+      #{ps,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.trs.commodity.model.HandleIndexLogs" >
+    insert into handle_index_logs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="handleId != null" >
+        handle_id,
+      </if>
+      <if test="yrIndex != null" >
+        yr_index,
+      </if>
+      <if test="rtIndex != null" >
+        rt_index,
+      </if>
+      <if test="ptIndex != null" >
+        pt_index,
+      </if>
+      <if test="commIndex != null" >
+        comm_index,
+      </if>
+      <if test="folwIndex != null" >
+        folw_index,
+      </if>
+      <if test="ps != null" >
+        ps,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="handleId != null" >
+        #{handleId,jdbcType=INTEGER},
+      </if>
+      <if test="yrIndex != null" >
+        #{yrIndex,jdbcType=INTEGER},
+      </if>
+      <if test="rtIndex != null" >
+        #{rtIndex,jdbcType=INTEGER},
+      </if>
+      <if test="ptIndex != null" >
+        #{ptIndex,jdbcType=INTEGER},
+      </if>
+      <if test="commIndex != null" >
+        #{commIndex,jdbcType=INTEGER},
+      </if>
+      <if test="folwIndex != null" >
+        #{folwIndex,jdbcType=INTEGER},
+      </if>
+      <if test="ps != null" >
+        #{ps,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.trs.commodity.model.HandleIndexLogs" >
+    update handle_index_logs
+    <set >
+      <if test="yrIndex != null" >
+        yr_index = #{yrIndex,jdbcType=INTEGER},
+      </if>
+      <if test="rtIndex != null" >
+        rt_index = #{rtIndex,jdbcType=INTEGER},
+      </if>
+      <if test="ptIndex != null" >
+        pt_index = #{ptIndex,jdbcType=INTEGER},
+      </if>
+      <if test="commIndex != null" >
+        comm_index = #{commIndex,jdbcType=INTEGER},
+      </if>
+      <if test="folwIndex != null" >
+        folw_index = #{folwIndex,jdbcType=INTEGER},
+      </if>
+      <if test="ps != null" >
+        ps = #{ps,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where handle_id = #{handleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.trs.commodity.model.HandleIndexLogs" >
+    update handle_index_logs
+    set yr_index = #{yrIndex,jdbcType=INTEGER},
+      rt_index = #{rtIndex,jdbcType=INTEGER},
+      pt_index = #{ptIndex,jdbcType=INTEGER},
+      comm_index = #{commIndex,jdbcType=INTEGER},
+      folw_index = #{folwIndex,jdbcType=INTEGER},
+      ps = #{ps,jdbcType=VARCHAR}
+    where handle_id = #{handleId,jdbcType=INTEGER}
+  </update>
+</mapper>

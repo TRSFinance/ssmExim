@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.trs.commodity.dao.ProcsvlogsMapper" >
+  <resultMap id="BaseResultMap" type="com.trs.commodity.model.Procsvlogs" >
+    <id column="partner_code" property="partnerCode" jdbcType="VARCHAR" />
+    <id column="reporter_code" property="reporterCode" jdbcType="VARCHAR" />
+    <id column="yr" property="yr" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="finish_time" property="finishTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="islimit" property="islimit" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    partner_code, reporter_code, yr, start_time, finish_time, status, islimit
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.trs.commodity.model.ProcsvlogsKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from procsvlogs
+    where partner_code = #{partnerCode,jdbcType=VARCHAR}
+      and reporter_code = #{reporterCode,jdbcType=VARCHAR}
+      and yr = #{yr,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.trs.commodity.model.ProcsvlogsKey" >
+    delete from procsvlogs
+    where partner_code = #{partnerCode,jdbcType=VARCHAR}
+      and reporter_code = #{reporterCode,jdbcType=VARCHAR}
+      and yr = #{yr,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.trs.commodity.model.Procsvlogs" >
+    insert into procsvlogs (partner_code, reporter_code, yr, 
+      start_time, finish_time, status, 
+      islimit)
+    values (#{partnerCode,jdbcType=VARCHAR}, #{reporterCode,jdbcType=VARCHAR}, #{yr,jdbcType=INTEGER}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{finishTime,jdbcType=TIMESTAMP}, #{status,jdbcType=CHAR}, 
+      #{islimit,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.trs.commodity.model.Procsvlogs" >
+    insert into procsvlogs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="partnerCode != null" >
+        partner_code,
+      </if>
+      <if test="reporterCode != null" >
+        reporter_code,
+      </if>
+      <if test="yr != null" >
+        yr,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="finishTime != null" >
+        finish_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="islimit != null" >
+        islimit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="partnerCode != null" >
+        #{partnerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="reporterCode != null" >
+        #{reporterCode,jdbcType=VARCHAR},
+      </if>
+      <if test="yr != null" >
+        #{yr,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishTime != null" >
+        #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="islimit != null" >
+        #{islimit,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.trs.commodity.model.Procsvlogs" >
+    update procsvlogs
+    <set >
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishTime != null" >
+        finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="islimit != null" >
+        islimit = #{islimit,jdbcType=CHAR},
+      </if>
+    </set>
+    where partner_code = #{partnerCode,jdbcType=VARCHAR}
+      and reporter_code = #{reporterCode,jdbcType=VARCHAR}
+      and yr = #{yr,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.trs.commodity.model.Procsvlogs" >
+    update procsvlogs
+    set start_time = #{startTime,jdbcType=TIMESTAMP},
+      finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=CHAR},
+      islimit = #{islimit,jdbcType=CHAR}
+    where partner_code = #{partnerCode,jdbcType=VARCHAR}
+      and reporter_code = #{reporterCode,jdbcType=VARCHAR}
+      and yr = #{yr,jdbcType=INTEGER}
+  </update>
+</mapper>
