@@ -33,7 +33,7 @@ public class CommodityInfoHandle {
 	@Autowired 
 	private HandleIndexLogsService handleIndexService;
 		
-	@Autowired
+	@Autowired 
 	BasicDataSource dataSource; 
 		
 	/**
