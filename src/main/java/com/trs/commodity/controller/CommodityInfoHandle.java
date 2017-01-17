@@ -30,7 +30,7 @@ public class CommodityInfoHandle {
 	@Autowired
 	private	CommodityDictService commDictService;
 	
-	@Autowired
+	@Autowired 
 	private HandleIndexLogsService handleIndexService;
 		
 	@Autowired
